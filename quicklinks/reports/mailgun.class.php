@@ -3,7 +3,7 @@
  * Mailgun quicklink
  * @author markparnell
  */
-class reports_mailgun_quicklink extends bb_modal_quicklink {
+class reports_mailgun_quicklink extends bb_form_quicklink {
     public function __construct() {
         parent::__construct();
         $this->title = 'Send Email';
@@ -50,6 +50,7 @@ class reports_mailgun_quicklink extends bb_modal_quicklink {
         $connector->send_email($emails, $subject, $message);
         if (!$connector->is_success()) {
             echo 'An error occured while attempted to send your email: '.$connector->get_last_error().'.';
+            die();
         }
 
         return true;

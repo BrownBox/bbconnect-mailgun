@@ -3,7 +3,7 @@
  * Mailgun quicklink
  * @author markparnell
  */
-class profile_mailgun_quicklink extends bb_modal_quicklink {
+class profile_mailgun_quicklink extends bb_form_quicklink {
     public function __construct() {
         parent::__construct();
         $this->title = 'Send Email';

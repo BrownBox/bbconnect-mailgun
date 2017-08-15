@@ -3,7 +3,7 @@
  * Plugin Name: Connexions Mailgun
  * Plugin URI: n/a
  * Description: Send emails to your contacts via Mailgun (http://mailgun.com/)
- * Version: 0.1
+ * Version: 0.1.1
  * Author: Brown Box
  * Author URI: http://brownbox.net.au
  * License: Proprietary Brown Box
@@ -16,7 +16,7 @@ require_once (BBCONNECT_MAILGUN_DIR.'settings.php');
 require_once (BBCONNECT_MAILGUN_DIR.'classes/connector.class.php');
 
 function bbconnect_mailgun_init() {
-    if (!defined('BBCONNECT_VER')) {
+    if (!defined('BBCONNECT_VER') || version_compare(BBCONNECT_VER, '2.5.6', '<')) {
         add_action('admin_init', 'bbconnect_mailgun_deactivate');
         add_action('admin_notices', 'bbconnect_mailgun_deactivate_notice');
         return;
@@ -34,7 +34,7 @@ function bbconnect_mailgun_deactivate() {
 }
 
 function bbconnect_mailgun_deactivate_notice() {
-    echo '<div class="updated"><p><strong>Connexions Mailgun</strong> has been <strong>deactivated</strong> as it requires Connexions.</p></div>';
+    echo '<div class="updated"><p><strong>Connexions Mailgun</strong> has been <strong>deactivated</strong> as it requires Connexions (v2.5.6 or higher).</p></div>';
     if (isset($_GET['activate'])) {
         unset($_GET['activate']);
     }
