@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Connexions Mailgun
- * Plugin URI: n/a
+ * Plugin URI: http://connexionscrm.com/
  * Description: Send emails to your contacts via Mailgun (http://mailgun.com/)
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Brown Box
  * Author URI: http://brownbox.net.au
  * License: Proprietary Brown Box
@@ -38,6 +38,12 @@ function bbconnect_mailgun_deactivate_notice() {
     if (isset($_GET['activate'])) {
         unset($_GET['activate']);
     }
+}
+
+add_filter('bbconnect_activity_types', 'bbconnect_mailgun_activity_types');
+function bbconnect_mailgun_activity_types($types) {
+    $types['mailgun'] = 'Mailgun';
+    return $types;
 }
 
 add_filter('bbconnect_activity_icon', 'bbconnect_mailgun_activity_icon', 10, 2);
